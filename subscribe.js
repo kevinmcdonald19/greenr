@@ -1,5 +1,5 @@
 //const Nomad = require('nomad-stream')
-const nomad = new Nomad()
+//const nomad = new Nomad()
 const port = 5000;
 //var bodyParser = require('body-parser');
 var SunCalc = require('suncalc');
