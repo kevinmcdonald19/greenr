@@ -86,8 +86,8 @@ MongoClient.connect("mongodb://kevin:kevin@ds011449.mlab.com:11449/trusted-solar
         //        var min = 2600;
         var max = 3000;
         //        var max = 2700;
-        var neighborhoodPowerAverage = 2950;
-        var weatherPowerAverage = 2950;
+        var neighborhoodPowerAverage = 2750;
+        var weatherPowerAverage = neighborhoodPowerAverage;
         //        var neighborhoodPowerAverage = 2680;
         //        var weatherPowerAverage = 2680;
 
