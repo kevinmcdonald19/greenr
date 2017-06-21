@@ -1,26 +1,26 @@
-const Nomad = require('nomad-stream')
+//const Nomad = require('nomad-stream')
 const nomad = new Nomad()
 const port = 5000;
 //var bodyParser = require('body-parser');
 var SunCalc = require('suncalc');
 
-// configure app to use bodyParser()
-
-// nomad server
-nomad.subscribe(['QmVohe9oXXAaVBpc5fs42pJs5aoWCk1EY9xEmvkQQDDwk5'], function (message) {
-    console.log('reading: ' + message.power);
-})
-
-// solar panel: this will be the simulation of sending data to our 
-nomad.prepareToPublish().then(function (n) {
-    //    console.log(n);
-    const nomadInstance = n
-    nomadInstance.publishRoot("hi there");
-
-    var endTime;
-    var interval = 1000;
-
-})
+//// configure app to use bodyParser()
+//
+//// nomad server
+//nomad.subscribe(['QmVohe9oXXAaVBpc5fs42pJs5aoWCk1EY9xEmvkQQDDwk5'], function (message) {
+//    console.log('reading: ' + message.power);
+//})
+//
+//// solar panel: this will be the simulation of sending data to our 
+//nomad.prepareToPublish().then(function (n) {
+//    //    console.log(n);
+//    const nomadInstance = n
+//    nomadInstance.publishRoot("hi there");
+//
+//    var endTime;
+//    var interval = 1000;
+//
+//})
 
 
 // market server
