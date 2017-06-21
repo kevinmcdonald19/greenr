@@ -82,10 +82,14 @@ MongoClient.connect("mongodb://kevin:kevin@ds011449.mlab.com:11449/trusted-solar
         var fraudList = [];
         var interval = 3000;
 
-        var min = 2900;
-        var max = 3000;
-        var neighborhoodPowerAverage = 2950;
-        var weatherPowerAverage = 2950;
+        //        var min = 2900;
+        var min = 2600;
+        //        var max = 3000;
+        var max = 2700;
+        //        var neighborhoodPowerAverage = 2950;
+        //        var weatherPowerAverage = 2950;
+        var neighborhoodPowerAverage = 2680;
+        var weatherPowerAverage = 2680;
 
 
         // TODO: remove when real data comes in
