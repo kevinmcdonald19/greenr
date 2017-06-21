@@ -4,5 +4,11 @@
   "version": "1.0.0",
   "engines": {
     "node": "6.11.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongodb": "^2.2.29",
+    "suncalc": "^1.8.0"
   }
 }
