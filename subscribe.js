@@ -69,98 +69,98 @@ MongoClient.connect("mongodb://kevin:kevin@ds011449.mlab.com:11449/trusted-solar
 
         // start doing some logic w/ reading
 
-        //storeIntoSystem(req.body);
+        storeIntoSystem(reading);
 
 
     });
 
-    storeIntoSystem();
-
-    function storeIntoSystem() {
+    function storeIntoSystem(actualReading) {
         var readings = {};
         var recList = [];
         var fraudList = [];
         var interval = 3000;
 
-        var neighborhoodPowerAverage = Math.random() * (3.5 - 3.0) + 3.0;
-        var weatherPowerAverage = Math.random() * (3.5 - 3.0) + 3.0;
+        var min = 2900;
+        var max = 3000;
+        var neighborhoodPowerAverage = 2950;
+        var weatherPowerAverage = 2950;
 
-        setInterval(function () {
-            // TODO: remove when real data comes in
-            var reading = {
-                panelID: 12345,
-                elevationAngle: 3,
-                location: {
-                    longitude: -71.102185,
-                    latitude: 42.367079,
+
+        // TODO: remove when real data comes in
+        var reading = {
+            panelID: 12345,
+            elevationAngle: 3,
+            location: {
+                longitude: -71.102185,
+                latitude: 42.367079,
+            },
+            power: null,
+            weather: {
+                cloudCoverage: null,
+                temperature: null
+            },
+            interval: {
+                stop: function () {
+                    new Date();
                 },
-                power: 2.56,
-                weather: {
-                    cloudCoverage: null,
-                    temperature: null
-                },
-                interval: {
-                    stop: function () {
-                        new Date();
-                    },
-                    interval: interval
-                },
-                certified: null
-            }
+                interval: interval
+            },
+            certified: null
+        }
 
-            reading.power = Math.random() * (4.5 - 2.5) + 2.5;
+        reading.power = actualReading.data;
 
-            // get today's sunlight times for a location
-            //        var times = SunCalc.getTimes(new Date(), reading.location.latitude, reading.location.longitude);
-            //
-            //        console.log('times: ' + times);
-            //
-            //        // get position of the sun (azimuth and altitude) at today's sunrise
-            //        var sunrisePos = SunCalc.getPosition(times.sunrise, reading.location.latitude, reading.location.longitude);
-            //        console.log('altitude: ' + sunrisePos.altitude);
-            //
-            //        // get sunrise azimuth in degrees
-            //        var sunriseAzimuth = sunrisePos.azimuth * 180 / Math.PI;
-            //
-            //        console.log('sunrise Azimuth: ' + sunriseAzimuth);
-            //
-            //        console.log(JSON.stringify(reading));
+        //        var randMin = 4500;
+        //        var randMax = 2500;
+        //        reading.power = Math.random() * (randMax - randMin) + randMin;
 
-            // comparison formula
-            var estimate = null;
-            //        estimate = (990 * Math.sin(reading.elevationAngle) - 30) * (1 - 0.75 * (Math.pow(reading.weather.cloudCoverage, 3.4)));
+        // get today's sunlight times for a location
+        //        var times = SunCalc.getTimes(new Date(), reading.location.latitude, reading.location.longitude);
+        //
+        //        console.log('times: ' + times);
+        //
+        //        // get position of the sun (azimuth and altitude) at today's sunrise
+        //        var sunrisePos = SunCalc.getPosition(times.sunrise, reading.location.latitude, reading.location.longitude);
+        //        console.log('altitude: ' + sunrisePos.altitude);
+        //
+        //        // get sunrise azimuth in degrees
+        //        var sunriseAzimuth = sunrisePos.azimuth * 180 / Math.PI;
+        //
+        //        console.log('sunrise Azimuth: ' + sunriseAzimuth);
+        //
+        //        console.log(JSON.stringify(reading));
 
+        // comparison formula
+        var estimate = null;
+        //        estimate = (990 * Math.sin(reading.elevationAngle) - 30) * (1 - 0.75 * (Math.pow(reading.weather.cloudCoverage, 3.4)));
 
-            if ((reading.power > (neighborhoodPowerAverage - 1)) && (reading.power < (neighborhoodPowerAverage + 1))) {
-                if (reading.power > (weatherPowerAverage - 1) && reading.power < (weatherPowerAverage + 1)) {
-                    match = true;
-                } else {
-                    match = false;
-                }
+        var range = 50;
+        if ((reading.power > (neighborhoodPowerAverage - range)) && (reading.power < (neighborhoodPowerAverage + range))) {
+            if (reading.power > (weatherPowerAverage - range) && reading.power < (weatherPowerAverage + range)) {
+                match = true;
             } else {
                 match = false;
             }
+        } else {
+            match = false;
+        }
 
-            // classify 
-            if (match === true) {
-                reading.certified = true;
-            } else {
-                reading.certified = false;
-            }
+        // classify 
+        if (match === true) {
+            reading.certified = true;
+        } else {
+            reading.certified = false;
+        }
 
-            reading.timestamp = new Date();
-            reading.neighborhoodPowerAverage = neighborhoodPowerAverage;
-            reading.weatherPowerAverage = weatherPowerAverage;
-            reading.estimatedValue = Math.round(0.03 * reading.power * 100) / 100;
+        reading.timestamp = new Date();
+        reading.neighborhoodPowerAverage = neighborhoodPowerAverage;
+        reading.weatherPowerAverage = weatherPowerAverage;
+        reading.estimatedValue = Math.round(0.03 * reading.power * 100) / 100;
 
 
-            database.collection('readings').insert(reading, (err, results) => {
-                //            if (err) {
-                //                //                console.log('error saving reading');
-                //            } else {
-                //                //                console.log('success saving reading');
-                //            }
-            })
-        }, interval);
+        database.collection('readings').insert(reading, (err, results) => {
+            console.log('saving reading');
+        })
+
     }
 })
