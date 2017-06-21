@@ -1,0 +1,75 @@
+<div id="content">
+
+
+    <!-- ****************** DIRECTIONS ****************** -->
+
+    <div class="directions_body"><strong>Directions:</strong> Indicate your agreement with the statement below by tapping the <strong><em>Yes</em></strong>, <strong><em>No</em></strong>, or <strong><em>Not
+            Sure</em></strong> button.
+    </div>
+
+    <!-- ****************** END DIRECTIONS ****************** -->
+
+
+    <!-- ****************** SECTION HEADER ****************** -->
+
+    <div class="section_header">6. Work/Home Issues</div>
+
+
+
+    <!-- ****************** END QUESTION ****************** -->
+
+
+    <!-- ****************** ANSWER BUTTONS ****************** -->
+
+    <div class="answer_area">
+
+
+
+
+        <!-- ****************** END WHY LINK *********************** -->
+
+
+
+
+        <div ng-repeat="questionAnswer in work.questionAnswers">
+            {{questionAnswer.question.text}}
+            <br/>
+            
+            <div ng-show="savingContent" class="savingContent">
+                <h1>Saving your response, just a sec :)</h1>
+            </div>
+
+            <div class="btn-group" ng-model="work.answers[questionAnswer.question.id].radio" bs-radio-group>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('work')">Yes</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('work')">No</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('work')"> Not Sure</label>
+            </div>
+            <br/>
+            <br/>
+            <small>
+            <em><p>{{questionAnswer.question.why}}</p></em>
+            </small>
+            <hr/>
+        </div>
+    </div>
+
+    <div ng-include src="'partials/prev_next_buttons.html'"></div>
+
+    <!--
+    <div class="learnMorePanel">
+    <div id="why_link" class="why_link_text">Why do we ask about Works & Family Issues?
+
+    </div>
+    <p class="why_title">Work & Family Issues</p>
+
+    <p class="why_body">Most of us are swamped with many things and we need to take responsibility for setting a healthy balance and making sure we keep the marriage as our top priority. Eventually there may be children, jobs, or other things that can come between the couple. It is up to the couple to take responsibility for how they will handle the various life obligations that will be an ongoing part of their relationship.
+        <br/>
+        <br/>Many engaged and newly married couples report that even before marriage they have trouble balancing "together time" with the many other time-consuming activities in their lives.
+    </p>
+</div>
+-->
+
+</div>

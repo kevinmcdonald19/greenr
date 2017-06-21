@@ -1,0 +1,54 @@
+<div id="content">
+
+
+    <!-- ****************** DIRECTIONS ****************** -->
+
+    <div class="directions_body"><strong>Directions:</strong> Indicate your agreement with the statement below by tapping the <strong><em>Yes</em></strong>, <strong><em>No</em></strong>, or <strong><em>Not
+            Sure</em></strong> button.
+    </div>
+
+    <div class="section_header">4. Values</div>
+
+    <div class="answer_area">
+
+
+        <div ng-repeat="questionAnswer in values.questionAnswers">
+            {{questionAnswer.question.text}}
+            <br/>
+            
+            <div ng-show="savingContent" class="savingContent">
+                <h1>Saving your response, just a sec :)</h1>
+            </div>
+
+            <div class="btn-group" ng-model="values.answers[questionAnswer.question.id].radio" bs-radio-group>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('values')">Yes</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('values')">No</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('values')"> Not Sure</label>
+            </div>
+            <br/>
+            <br/>
+            <small>
+            <em><p>{{questionAnswer.question.why}}</p></em>
+            </small>
+            <hr/>
+        </div>
+
+        <div ng-include src="'partials/prev_next_buttons.html'"></div>
+
+        <!--
+       <div class="learnMorePanel">
+
+    <div id="why_link" class="why_link_text">Why do we ask about Values?
+
+    </div>
+    <p class="why_title">Values</p>
+    <p class="why_body">Making their relationship primary is a value that will be essential for a healthy and strong marriage. Hopefully the couple holds many similar values. Even where they have some dissimilar values, there will need to be some deepening appreciation for how the other party holds a particular value. The ideal is that they attempt to make such values into "our value" — meaning, the one who may value doing some charity or outreach, would be joined by their partner in such an endeavor. At the least, the other partner would support him or her, even if they do not see it as such a high value. In return the partner who is now getting support can express true appreciation for their partner's efforts.</p>
+
+</div>
+-->
+    </div>
+
+</div>

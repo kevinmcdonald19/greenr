@@ -1,0 +1,57 @@
+<div id="content">
+
+
+    <!-- ****************** DIRECTIONS ****************** -->
+
+    <div class="directions_body"><strong>Directions:</strong> Indicate your agreement with the statement below by tapping the <strong><em>Yes</em></strong>, <strong><em>No</em></strong>, or <strong><em>Not
+            Sure</em></strong> button.
+    </div>
+
+    <!-- ****************** END DIRECTIONS ****************** -->
+
+
+    <!-- ****************** SECTION HEADER ****************** -->
+
+    <div class="section_header">12. SPEAKING PERSONALLY…</div>
+
+    <!-- ****************** END SECTION HEADER ****************** -->
+
+
+    <!-- ****************** QUESTION ****************** -->
+
+
+
+    <!-- ****************** END QUESTION ****************** -->
+
+
+    <!-- ****************** ANSWER BUTTONS ****************** -->
+
+    <div class="answer_area">
+        <div ng-repeat="questionAnswer in speaking.questionAnswers">
+            {{questionAnswer.question.text}}
+            <br/>
+            
+            <div ng-show="savingContent" class="savingContent">
+                <h1>Saving your response, just a sec :)</h1>
+            </div>
+
+            <div class="btn-group" ng-model="speaking.answers[questionAnswer.question.id].radio" bs-radio-group>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('speaking')">Yes</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('speaking')">No</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('speaking')"> Not Sure</label>
+            </div>
+            <br/>
+            <br/>
+            <small>
+            <em><p>{{questionAnswer.question.why}}</p></em>
+            </small>
+            <hr/>
+
+        </div>
+    </div>
+    <div ng-include src="'partials/prev_next_buttons.html'"></div>
+
+</div>

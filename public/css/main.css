@@ -1,0 +1,17 @@
+body {
+    border-top: 30px solid #20AB7C;
+}
+
+.app {
+    font-family: Arial !important;
+    margin: 40px;
+}
+
+.value {
+    font-weight: bold;
+}
+
+.counts {
+    font-weight: bold;
+    font-size: 60px;
+}

@@ -1,0 +1,142 @@
+<html>
+<head>
+<title>Facing Ahead - An Interactive App for Couples</title>
+
+<link rel="stylesheet" type="text/css" href="facing_ahead_style.css">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script language="JavaScript">
+
+function toggleVisON(obj){
+
+         with(document.getElementById(obj).style){
+
+                 if(visibility != 'visible'){
+                         visibility = 'visible';
+                 }else{
+                         visibility = 'hidden';
+                 }
+         }
+ }
+ 
+
+</script> 
+
+</head>
+
+<body bgcolor="#000033" margin="0" topmargin="0" leftmargin="0" rightmargin="0">
+
+
+<!-- ****************** HEADER ****************** -->
+
+<div id="header_logo" align="center"><img src="header_logo_320x50.jpg" border="0"></div>
+
+<!-- ****************** END HEADER ****************** -->
+
+
+
+
+<!-- ****************** SCREEN CONTENT ****************** -->
+
+<div id="content">
+
+
+
+<!-- ****************** DIRECTIONS ****************** -->
+
+<div class="directions_body"><strong>Directions:</strong> Indicate your agreement with the statement below by tapping the <strong><em>Yes</em></strong>, <strong><em>No</em></strong>, or <strong><em>Not Sure</em></strong> button.</div>
+
+<!-- ****************** END DIRECTIONS ****************** -->
+
+
+
+<!-- ****************** SECTION HEADER ****************** -->
+
+<div class="section_header">Families</div>
+
+<!-- ****************** END SECTION HEADER ****************** -->
+
+
+
+
+<!-- ****************** QUESTION ****************** -->
+
+<div class="question_area"><ol><li class="question_body">I know some stories about my family and my future spouse's family.</li></ol></div>
+
+<!-- ****************** END QUESTION ****************** -->
+
+
+
+<!-- ****************** ANSWER BUTTONS ****************** -->
+
+<div class="answer_area"><span class="btn_yes">Yes</span> <span class="btn_no">No</span> <span class="btn_ns">Not Sure</span><div>
+
+<!-- ****************** END ANSWER BUTTONS ****************** -->
+
+
+ <!-- ****************** WHY LINK ******************** -->
+
+<div id="why_link" class="why_link_text"><br><br>Why do we ask about Families?<br /><a href="#" onclick="toggleVisON('why'); return false;">Tap here to learn more.</a></div>
+
+<!-- ****************** END WHY LINK *********************** -->
+
+<!-- ****************** PREV & NEXT BUTTONS ****************** -->
+
+<div id="prev_next">
+<div id="prev"><a href="responsive_home.html"><img src="prev_button.png" border="0"></a></div>
+<div id="next"><a href="question_roles_01.html"><img src="next_button.png" border="0"></a></div>
+</div>
+
+<!-- ****************** END PREV & NEXT BUTTONS ****************** -->
+
+</div>
+
+
+<!-- ****************** END SCREEN CONTENT ****************** -->
+
+
+
+<!-- ****************** FOOTER ****************** -->
+
+<div id="footer" align="center">
+<a href="index.html"><img src="icon_home_30x30.jpg" border="0"></a>
+<img src="icon_divider_30x30.jpg" border="0">
+<a href="#" onclick="toggleVisON('menu'); return false;"><img src="icon_menu_30x30.jpg" border="0"></a>
+<img src="icon_divider_30x30.jpg" border="0">
+<a href="about.html"><img src="icon_info_30x30.jpg" border="0"></a>
+<img src="icon_divider_30x30.jpg" border="0">
+<a href="settings.html"><img src="icon_settings_30x30.jpg" border="0"></a>
+</div>
+
+<!-- ****************** END FOOTER ****************** -->
+
+
+<!-- ****************** MENU ****************** -->
+
+<div id="menu">
+
+<p class="menu_item"><a href="index.html">Home</a></p>
+<p class="menu_item"><a href="how_it_works.html">How It Works</a></p>
+<p class="menu_item"><a href="topics.html">Quiz Sections</a></p>
+<p class="menu_item"><a href="about.html">About S&K Publishers</a></p>
+<p class="menu_item">Log Out</p>
+
+</div>
+
+<!-- ****************** END MENU ******************* -->
+
+<!-- ************************** WHY IMPORTANT LAYER ********************************* -->
+
+<div id="why">
+<p class="close_X"><a href="#" onclick="toggleVisON('why'); return false;">X</a></p>
+<p class="why_title">Families</p>
+<p class="why_body">Family of origin is an important starting point for each couple. When one marries, he/she is marrying into the other person's family system. The task of each person upon entering marriage is to separate from one's own family of origin, while still remaining connected. To not separate is to make it impossible to create the marital union. At the same time, to cut off from one's family of origin is to threaten the marital relationship with too much pressure and intensity. It is important for both parties to go into marriage with an understanding of their own family background, as well as insight regarding their prospective marriage partner's family of origin.</p>
+
+</div>
+
+<!-- ****************** END WHY LAYER ******************* -->
+
+</body>
+</html>

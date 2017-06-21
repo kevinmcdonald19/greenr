@@ -1,0 +1,71 @@
+<img src="images/greenr_logo-01.png" width="350" height="150" />
+<div class="navRow">
+
+</div>
+<hr/>
+
+<h2>Dashboard</h2>
+
+<div class="row">
+    <div class="col-sm-4">
+        <div class="counts">
+            <span class="glyphicon glyphicon-refresh"></span> {{readings.length}}
+
+        </div>
+        <label>Number of readings</label>
+
+    </div>
+    <div class="col-sm-4 ">
+        <div class="counts text-success">
+            <span class="glyphicon glyphicon-ok-sign"></span> {{numCertified}}
+
+        </div>
+        <label>Certified RECs</label>
+
+    </div>
+    <div class="col-sm-4 ">
+        <div class="counts text-danger">
+            <span class="glyphicon glyphicon-warning-sign"></span> {{numFraud}}
+        </div>
+        <label>Potential Fraud</label>
+
+    </div>
+</div>
+
+<br/>
+<h2>All Readings</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Panel ID</th>
+            <th>Timestamp</th>
+            <th>Actual Power</th>
+            <th>Weather Power Average</th>
+            <th>Neighborhood Power Average</th>
+            <th>Certification</th>
+            <th>Estimated Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="reading in readings">
+            <td>{{reading.panelID}}</td>
+            <td>{{reading.timestamp | date: 'medium'}}</td>
+            <td>{{reading.power}}</td>
+            <td>{{reading.weatherPowerAverage}}</td>
+            <td>{{reading.neighborhoodPowerAverage}}</td>
+            <td>
+                <div ng-if="reading.certified" class="text-success "><span class="glyphicon glyphicon-ok-sign"></span> Verified</div>
+                <div ng-if="!reading.certified" class="text-danger">Potential Fraud</div>
+
+            </td>
+            <td>
+                <div ng-if="reading.certified" class="text-success ">${{reading.estimatedValue}}</div>
+                <div ng-if="!reading.certified" class="text-danger">Does not qualify</div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div>Loading...</div>
+
+</div>

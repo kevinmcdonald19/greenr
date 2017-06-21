@@ -1,0 +1,67 @@
+<div id="content">
+
+
+    <!-- ****************** DIRECTIONS ****************** -->
+
+    <div class="directions_body"><strong>Directions:</strong> Indicate your agreement with the statement below by tapping the <strong><em>Yes</em></strong>, <strong><em>No</em></strong>, or <strong><em>Not
+            Sure</em></strong> button.
+    </div>
+
+    <!-- ****************** END DIRECTIONS ****************** -->
+
+
+    <!-- ****************** SECTION HEADER ****************** -->
+
+    <div class="section_header">7. Friends and Leisure</div>
+
+
+
+    <!-- ****************** END QUESTION ****************** -->
+
+
+    <!-- ****************** ANSWER BUTTONS ****************** -->
+
+    <div class="answer_area">
+
+        <div ng-repeat="questionAnswer in leisure.questionAnswers">
+            {{questionAnswer.question.text}}
+            <br/>
+            
+            <div ng-show="savingContent" class="savingContent">
+                <h1>Saving your response, just a sec :)</h1>
+            </div>
+
+            <div class="btn-group" ng-model="leisure.answers[questionAnswer.question.id].radio" bs-radio-group>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('leisure')">Yes</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('leisure')">No</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('leisure')"> Not Sure</label>
+            </div>
+            <br/>
+            <br/>
+            <small>
+            <em><p>{{questionAnswer.question.why}}</p></em>
+            </small>
+            <hr/>
+        </div>
+
+    </div>
+
+
+    <div ng-include src="'partials/prev_next_buttons.html'"></div>
+
+    <!--
+   <div class="learnMorePanel">
+    <div id="why_link" class="why_link_text">Why do we ask about Friends & Leisure?
+
+
+    </div>
+    <p class="why_title">Friends & Leisure</p>
+    <p class="why_body">Couples do not suddenly end the friendships they had prior to becoming involved with each other. They eventually find that they begin to develop mutual friends hopefully including some married friend couples. Ideally, they are to become each other's best friend. All those other friendships have their place but the marital relationship needs to take priority. This does not mean that they are not to have any other friends. In fact, friendships can and often do support the marital relationship. In order for this to be a positive benefit to the marriage, they will need to set some boundaries so that friendships remain supportive without becoming a distraction or even temptation for the marital relationship.
+    </p>
+
+</div>-->
+
+</div>

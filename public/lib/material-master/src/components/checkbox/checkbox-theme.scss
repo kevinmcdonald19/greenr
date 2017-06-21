@@ -1,0 +1,92 @@
+md-checkbox.md-THEME_NAME-theme {
+  .md-ripple {
+    color: '{{accent-A700}}';
+  }
+
+  &.md-checked .md-ripple {
+    color: '{{background-600}}';
+  }
+
+  &.md-checked.md-focused ._md-container:before {
+    background-color: '{{accent-color-0.26}}';
+  }
+
+  .md-ink-ripple {
+    color: '{{foreground-2}}';
+  }
+
+  &.md-checked .md-ink-ripple {
+    color: '{{accent-color-0.87}}';
+  }
+
+  ._md-icon {
+    border-color: '{{foreground-2}}';
+  }
+
+  &.md-checked ._md-icon {
+    background-color: '{{accent-color-0.87}}';
+  }
+
+  &.md-checked ._md-icon:after {
+    border-color: '{{accent-contrast-0.87}}';
+  }
+
+  &:not([disabled]) {
+    &.md-primary {
+      @include checkbox-primary;
+    }
+
+    &.md-warn {
+      .md-ripple {
+        color: '{{warn-600}}';
+      }
+
+      .md-ink-ripple {
+        color: '{{foreground-2}}';
+      }
+
+      &.md-checked .md-ink-ripple {
+        color: '{{warn-color-0.87}}';
+      }
+
+      ._md-icon {
+        border-color: '{{foreground-2}}';
+      }
+
+      &.md-checked ._md-icon {
+        background-color: '{{warn-color-0.87}}';
+      }
+
+      &.md-checked.md-focused:not([disabled]) ._md-container:before {
+        background-color: '{{warn-color-0.26}}';
+      }
+
+      &.md-checked ._md-icon:after {
+        border-color: '{{background-200}}';
+      }
+    }
+  }
+
+  &[disabled] {
+    ._md-icon {
+      border-color: '{{foreground-3}}';
+    }
+
+    &.md-checked ._md-icon {
+      background-color: '{{foreground-3}}';
+    }
+
+    &.md-checked ._md-icon:after {
+      border-color: '{{background-200}}';
+    }
+
+    ._md-icon:after {
+      border-color: '{{foreground-3}}';
+    }
+
+    ._md-label {
+      color: '{{foreground-3}}';
+    }
+  }
+
+}
