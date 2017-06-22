@@ -72,8 +72,28 @@ MongoClient.connect("mongodb://kevin:kevin@ds011449.mlab.com:11449/trusted-solar
         // start doing some logic w/ reading
 
         storeIntoSystem(reading);
+    });
 
+    app.post('/readings/lights', (req, res) => {
+        console.log('posting light data here: ' + JSON.stringify(req.body));
 
+        res.send('posing lightValue');
+        var lightValue = req.body;
+
+        // start doing some logic w/ reading
+
+        //storeIntoSystem(lightValue);
+    });
+
+    app.post('/readings/thermometers', (req, res) => {
+        console.log('posting thermometer data here: ' + JSON.stringify(req.body));
+
+        res.send('posting thermometers');
+        var lightValue = req.body;
+
+        // start doing some logic w/ reading
+
+        //storeIntoSystem(lightValue);
     });
 
     function storeIntoSystem(actualReading) {
