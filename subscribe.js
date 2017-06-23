@@ -89,12 +89,62 @@ MongoClient.connect("mongodb://kevin:kevin@ds011449.mlab.com:11449/trusted-solar
         console.log('posting thermometer data here: ' + JSON.stringify(req.body));
 
         res.send('posting thermometers');
-        var lightValue = req.body;
+        var temperatureValue = req.body;
+        //        res.send('done');
 
         // start doing some logic w/ reading
 
         //storeIntoSystem(lightValue);
+
+        // calculate and save data
+        storeThermometerData(null);
+
     });
+
+    function storeThermometerData(hi) {
+        var temperatureValue = {
+            data: 82
+        };
+
+        var otherTemperatureValues = [
+            {
+                data: 80
+            },
+            {
+                data: 80
+            },
+            {
+                data: 82
+            }
+        ];
+
+        // calculate average
+        var sum = 0;
+        for (var i = 0; i < otherTemperatureValues.length; i++) {
+            console.log(otherTemperatureValues[i].data);
+            sum += otherTemperatureValues[i].data;
+        }
+        var average = sum / otherTemperatureValues.length;
+        console.log('average: ' + average);
+
+        // calculate variance
+        var varianceSum = 0;
+        for (var j = 0; j < otherTemperatureValues.length; j++) {
+            console.log('variance sum: ' + varianceSum);
+            varianceSum += Math.pow(otherTemperatureValues[j].data - average, 2);
+        }
+
+        var variance = 0.0;
+        variance = varianceSum / otherTemperatureValues.length;
+        console.log('variance: ' + variance);
+
+        // calculate standard deviation
+        var standardDeviation = Math.pow(variance, 0.5);
+        console.log('standard deviation: ' + standardDeviation);
+
+
+
+    }
 
     function storeIntoSystem(actualReading) {
         var readings = {};
