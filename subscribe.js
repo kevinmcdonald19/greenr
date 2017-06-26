@@ -98,15 +98,26 @@ MongoClient.connect("mongodb://kevin:kevin@ds011449.mlab.com:11449/trusted-solar
     app.post('/thermometer', (req, res) => {
         console.log('posting thermometer data here: ' + JSON.stringify(req.body));
 
-        var dataset = [];
-        dataset.push(parseInt(req.body.num1));
-        dataset.push(parseInt(req.body.num2));
-        dataset.push(parseInt(req.body.num3));
-        dataset.push(parseInt(req.body.num4));
+        var reading = req.body;
+        var newValue;
+        database.collection('thermometerReading').find()
+        .limit(1).sort({$natural:-1})
+        .toArray(function (err, results) {
+            if (err) {
+                res.status(500).send('error');
+            } else {
+                newValue = results[0].set;
+                newValue[parseInt(reading.index)] = Math.round(parseFloat(reading.value));
+                console.log(newValue);
+                storeThermometerData(newValue[3], newValue);
+                res.send('hi');
+            }
+        });
+        
 
-        storeThermometerData(parseInt(req.body.num4), dataset);
+        
 
-        res.send('hi');
+        
 
     });
 

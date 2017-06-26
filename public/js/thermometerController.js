@@ -37,8 +37,8 @@ mainModule.controller('ThermometerController', function ($rootScope, $scope, $ht
     $scope.getReadings();
 
     setInterval(function () {
-        $scope.sendData().then(function (response) {
-            console.log('post successful');
+        // $scope.sendData().then(function (response) {
+        //     console.log('post successful');
 
             // update the live feed
             $scope.getReadings().then(function (response) {
@@ -65,7 +65,7 @@ mainModule.controller('ThermometerController', function ($rootScope, $scope, $ht
                 ];
 
                 Plotly.newPlot('myDiv', data);
-            });
+            // });
         }, function (response) {
             console.log('error posting: ' + JSON.stringify(response));
         });
