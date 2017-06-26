@@ -1,5 +1,5 @@
 body {
-    border-top: 30px solid #20AB7C;
+    /*    border-top: 30px solid #20AB7C;*/
 }
 
 .app {
@@ -14,4 +14,27 @@ body {
 .counts {
     font-weight: bold;
     font-size: 60px;
+}
+
+.center {
+    text-align: center;
+}
+
+div#scoreDetailsSection {
+    background: rgba(0, 0, 0, .8);
+    color: white;
+    margin-left: -40px;
+    margin-right: -40px;
+    padding: 40px 40px 72px 40px;
+    margin-top: 40px;
+    margin-bottom: 43px;
+}
+
+div#upArrow {
+    position: absolute;
+    margin-top: -82px;
+    font-size: 40px;
+    left: 12.1vw;
+    color: rgba(0, 0, 0, .8);
+    margin-left: 0;
 }

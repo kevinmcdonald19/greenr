@@ -1,0 +1,110 @@
+<h1>Current State</h1>
+<hr/>
+<div class="row">
+    <div class="col-sm-3 center">
+        <img src="images/thermometer.png" width="220" height="300" />
+        <br/>
+        <br/>
+
+        <h-number value="input4.num" min="-1000" max="1000" step="1" change="onChanged()"></h-number>
+
+    </div>
+    <div class="col-sm-3 center">
+        <img src="images/thermometer.png" width="220" height="300" />
+        <br/>
+        <br/>
+
+        <h-number value="input1.num" min="-1000" max="1000" step="1" change="onChanged()"></h-number>
+    </div>
+    <div class="col-sm-3 center">
+        <img src="images/thermometer.png" width="220" height="300" />
+        <br/>
+        <br/>
+
+        <h-number value="input2.num" min="-1000" max="1000" step="1" change="onChanged()"></h-number>
+
+    </div>
+
+    <div class="col-sm-3 center">
+        <img src="images/thermometer.png" width="220" height="300" />
+        <br/>
+        <br/>
+
+        <h-number value="input3.num" min="-1000" max="1000" step="1" change="onChanged()"></h-number>
+
+    </div>
+
+
+</div>
+
+<div id="scoreDetailsSection">
+    <div id="upArrow">&#9650;</div>
+    <h2>Score Details</h2>
+
+    <div class="row">
+        <div class="col-sm-4 center">
+            <div class="counts"><strong><span class="glyphicon glyphicon-equalizer"></span> ${{currentReading.mean}}</strong></div>
+            <div>Mean</div>
+        </div>
+        <div class="col-sm-4 center">
+            <div class="counts"><strong><span class="glyphicon glyphicon-equalizer"></span> ${{currentReading.zScore}}</strong></div>
+            <div>Z Score</div>
+        </div>
+        <div class="col-sm-4 center">
+            <div class="counts"><strong><span class="glyphicon glyphicon-equalizer"></span> ${{currentReading.standardDeviation}}</strong></div>
+            <div>Standard Deviation</div>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <div class="row">
+        <div class="col-sm-4 center">
+            <div class="counts"><strong><span class="glyphicon glyphicon-credit-card"></span>  ${{currentReading.trustScore}}</strong></div>
+            <div> Trust Score</div>
+        </div>
+        <div class="col-sm-4 center">
+            <div class="counts"><strong><span class="glyphicon glyphicon-credit-card"></span>  ${{currentReading.payout}}</strong></div>
+            <div> Payout</div>
+        </div>
+        <div class="col-sm-4 center">
+            <div class="counts"><strong><span class="glyphicon glyphicon-send"></span> ${{0.09- currentReading.payout}}</strong></div>
+            <div>Opportunity Earnings</div>
+        </div>
+    </div>
+</div>
+
+
+<h2>Histogram</h2>
+<div id="myDiv"></div>
+<br/>
+<br/>
+
+<h1>Live Feed</h1>
+<hr/>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Thermometer</th>
+            <th>Timestamp</th>
+            <th>Reading</th>
+            <th>Mean</th>
+            <th>Z-Score</th>
+            <th>Standard Deviation</th>
+            <th>Trust</th>
+            <th>Payout</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="thermometer in thermometerReadings">
+            <td>Therm</td>
+            <td>{{thermometer.timestamp | date: 'medium'}}</td>
+            <td>{{thermometer.x}}</td>
+            <td>{{thermometer.mean}}</td>
+            <td>{{thermometer.zScore}}</td>
+            <td>{{thermometer.standardDeviation}}</td>
+            <td>{{thermometer.trustScore}}</td>
+            <td>{{thermometer.payout}}</td>
+
+        </tr>
+    </tbody>
+</table>

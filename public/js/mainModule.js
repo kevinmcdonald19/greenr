@@ -13,12 +13,17 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     }
 
     // For any unmatched url, send to /route1
-    $urlRouterProvider.otherwise("/home");
+    $urlRouterProvider.otherwise("/thermometer");
     $stateProvider
         .state('home', {
             url: "/home",
             templateUrl: "partials/home.html",
             controller: "HomeController"
+        })
+        .state('thermometer', {
+            url: "/thermometer",
+            templateUrl: "partials/thermometer.html",
+            controller: "ThermometerController"
         })
 
 

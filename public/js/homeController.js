@@ -6,7 +6,13 @@ mainModule.controller('HomeController', function ($rootScope, $scope, $http, use
     //    };
     //
     //    // test authentication
+
+
+
+
+
     setInterval(function () {
+
         $http.get('/readings').then(function (response) {
             if (response) {
                 console.log('we got readings');

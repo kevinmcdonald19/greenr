@@ -27,15 +27,22 @@ var SunCalc = require('suncalc');
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
+const ss = require('simple-statistics');
 const app = express();
-const url = 'mongodb://kevinmcdonald19:Nalah1989!@ds011449.mlab.com:11449/trusted-solar-recs';
+const nd = require('normal-distribution');
+const mathjs = require('mathjs');
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
 
 MongoClient.connect("mongodb://kevin:kevin@ds011449.mlab.com:11449/trusted-solar-recs", (err, database) => {
     if (err) return console.log(err)
 
-    app.use(bodyParser.urlencoded({
-        extended: true
-    }));
+    //    app.use(bodyParser.urlencoded({
+    //        extended: true
+    //    }));
 
     app.use(express.static('public'));
 
@@ -63,6 +70,20 @@ MongoClient.connect("mongodb://kevin:kevin@ds011449.mlab.com:11449/trusted-solar
         });
     });
 
+
+    app.get('/thermometer', (req, res) => {
+
+        database.collection('thermometerReading').find().sort({
+            timestamp: -1
+        }).toArray(function (err, results) {
+            if (err) {
+                res.send('error');
+            } else {
+                res.send(results);
+            }
+
+        });
+    });
     app.post('/readings', (req, res) => {
         console.log('posting here: ' + JSON.stringify(req.body));
 
@@ -74,76 +95,123 @@ MongoClient.connect("mongodb://kevin:kevin@ds011449.mlab.com:11449/trusted-solar
         storeIntoSystem(reading);
     });
 
-    app.post('/readings/lights', (req, res) => {
-        console.log('posting light data here: ' + JSON.stringify(req.body));
-
-        res.send('posing lightValue');
-        var lightValue = req.body;
-
-        // start doing some logic w/ reading
-
-        //storeIntoSystem(lightValue);
-    });
-
-    app.post('/readings/thermometers', (req, res) => {
+    app.post('/thermometer', (req, res) => {
         console.log('posting thermometer data here: ' + JSON.stringify(req.body));
 
-        res.send('posting thermometers');
-        var temperatureValue = req.body;
-        //        res.send('done');
+        var dataset = [];
+        dataset.push(parseInt(req.body.num1));
+        dataset.push(parseInt(req.body.num2));
+        dataset.push(parseInt(req.body.num3));
+        dataset.push(parseInt(req.body.num4));
 
-        // start doing some logic w/ reading
+        storeThermometerData(parseInt(req.body.num4), dataset);
 
-        //storeIntoSystem(lightValue);
-
-        // calculate and save data
-        storeThermometerData(null);
+        res.send('hi');
 
     });
 
-    function storeThermometerData(hi) {
-        var temperatureValue = {
-            data: 82
-        };
+    //    storeThermometerData();
 
-        var otherTemperatureValues = [
-            {
-                data: 80
-            },
-            {
-                data: 80
-            },
-            {
-                data: 82
-            }
-        ];
+    function storeThermometerData(temperatureValue, temperatureValues_array) {
+        //        var temperatureValue = {
+        //            data: 90
+        //        };
+
+        //        var temperatureValues_array = [81, 82, 83, 80, 84, 82, 79, 83];
+        //        temperatureValues_array.push(temperatureValue.data);
+
+        //        var otherTemperatureValues = [
+        //            {
+        //                data: 80
+        //            },
+        //            {
+        //                data: 80
+        //            },
+        //            {
+        //                data: 82
+        //            }
+        //        ];
 
         // calculate average
-        var sum = 0;
-        for (var i = 0; i < otherTemperatureValues.length; i++) {
-            console.log(otherTemperatureValues[i].data);
-            sum += otherTemperatureValues[i].data;
+        //        var sum = 0;
+        //        for (var i = 0; i < otherTemperatureValues.length; i++) {
+        //            console.log(otherTemperatureValues[i].data);
+        //            sum += otherTemperatureValues[i].data;
+        //        }
+        //        var average = sum / otherTemperatureValues.length;
+        //        console.log('average: ' + average);
+        //
+        //        // calculate variance
+        //        var varianceSum = 0;
+        //        for (var j = 0; j < otherTemperatureValues.length; j++) {
+        //            console.log('variance sum: ' + varianceSum);
+        //            varianceSum += Math.pow(otherTemperatureValues[j].data - average, 2);
+        //        }
+        //
+        //        var variance = 0.0;
+        //        variance = varianceSum / otherTemperatureValues.length;
+        //        console.log('variance: ' + variance);
+        //
+        //        // calculate standard deviation
+        //        var standardDeviation = Math.pow(variance, 0.5);
+        //        console.log('standard deviation: ' + standardDeviation);
+
+        // pseudo algorithm for reading and standard deviation
+
+        for (var i = 0; i < temperatureValues_array.length; i++) {
+            console.log(temperatureValues_array[i]);
         }
-        var average = sum / otherTemperatureValues.length;
-        console.log('average: ' + average);
-
-        // calculate variance
-        var varianceSum = 0;
-        for (var j = 0; j < otherTemperatureValues.length; j++) {
-            console.log('variance sum: ' + varianceSum);
-            varianceSum += Math.pow(otherTemperatureValues[j].data - average, 2);
-        }
-
-        var variance = 0.0;
-        variance = varianceSum / otherTemperatureValues.length;
-        console.log('variance: ' + variance);
-
-        // calculate standard deviation
-        var standardDeviation = Math.pow(variance, 0.5);
+        var mean = ss.mean(temperatureValues_array);
+        console.log('mean: ' + mean);
+        var standardDeviation = ss.standardDeviation(temperatureValues_array);
         console.log('standard deviation: ' + standardDeviation);
+        var zScore = ss.zScore(temperatureValue, mean, standardDeviation);
+        var zeroZScore = ss.zScore(mean, mean, standardDeviation); // should always be 0
+        console.log('z-score of ' + temperatureValue + ': ' + zScore);
+        //        var normalDistribution = ss.standardNormalTable(zScore);
 
+        var areaPercentage = cdfNormal(temperatureValue, mean, standardDeviation) * 100;
+        console.log('area %: ' + areaPercentage);
 
+        var trustScore = -1;
+        absoluteZScore = Math.abs(zScore);
+        console.log('abs z: ' + absoluteZScore);
+        if (absoluteZScore <= 1) {
+            trustScore = 3;
+        } else if (absoluteZScore <= 2 && absoluteZScore > 1) {
+            trustScore = 2;
+        } else if (absoluteZScore < 3 && absoluteZScore > 2) {
+            trustScore = 1;
+        } else {
+            trustScore = 0;
+        }
 
+        console.log('trustScore: ' + trustScore);
+
+        var payout = trustScore * 0.03;
+
+        var thermometerReading = {
+            x: temperatureValue,
+            set: temperatureValues_array,
+            mean: mean,
+            zScore: zScore,
+            standardDeviation: standardDeviation,
+            areaPercentage: areaPercentage,
+            iotID: 1,
+            trustScore: trustScore,
+            payout: payout
+        };
+
+        thermometerReading.timestamp = new Date();
+
+        database.collection('thermometerReading').insert(thermometerReading, (err, results) => {
+            console.log('saved thermometerReading');
+        })
+
+    }
+
+    function cdfNormal(x, mean, standardDeviation) {
+        return (1 - mathjs.erf((mean - x) / (Math.sqrt(2) * standardDeviation))) / 2
     }
 
     function storeIntoSystem(actualReading) {
