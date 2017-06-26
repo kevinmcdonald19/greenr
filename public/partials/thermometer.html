@@ -4,23 +4,31 @@
         <hr/>
         <div class="row">
             <div class="col-sm-3 center">
-                <img src="images/therm.png" width="180" height="300" class="img img-responsive center" />
+                <img src="images/green-therm.png" width="180" height="300" class="img img-responsive center" />
+                <p>{{currentReading.set[3]}}</p>
+                <i class="im im-arrow-down-circle"></i>
                 <br/>
                 <br/>
             </div>
             <div class="col-sm-3 center">
                 <img src="images/therm.png" width="180" height="300" class="img img-responsive center" />
+                <p>{{currentReading.set[1]}}</p>
+
                 <br/>
                 <br/>
             </div>
             <div class="col-sm-3 center">
                 <img src="images/therm.png" width="180" height="300" class="img img-responsive center" />
+                <p>{{currentReading.set[2]}}</p>
+
                 <br/>
                 <br/>
             </div>
 
             <div class="col-sm-3 center">
                 <img src="images/therm.png" width="180" height="300" class="img img-responsive center" />
+                <p>{{currentReading.set[0]}}</p>
+
                 <br/>
                 <br/>
             </div>
@@ -72,6 +80,16 @@
                     <div class="counts"><strong><span class="glyphicon glyphicon-send"></span> ${{0.09- currentReading.payout}}</strong></div>
                 </div>
             </div>
+            <br/>
+            <br/>
+            <div class="row">
+                <div class="col-sm-6 ">
+                    <div>Total Accumulated</div>
+
+                    <div class="counts"><strong><span class="glyphicon glyphicon-credit-card"></span>  ${{accumulatedTotal}}</strong></div>
+                </div>
+
+            </div>
         </div>
 
     </div>
@@ -80,10 +98,10 @@
     <div class="col-sm-6">
 
         <h1>Histogram</h1>
-        <hr/>
+
         <div id="myDiv"></div>
         <br/>
-        <br/>
+
 
 
 

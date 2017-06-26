@@ -40,31 +40,38 @@ mainModule.controller('ThermometerController', function ($rootScope, $scope, $ht
         // $scope.sendData().then(function (response) {
         //     console.log('post successful');
 
-            // update the live feed
-            $scope.getReadings().then(function (response) {
-                console.log('get');
-                $scope.currentReading = response.data[0];
-                $scope.currentReading.zScore = $scope.currentReading.zScore.toFixed(2);
-                $scope.currentReading.standardDeviation = $scope.currentReading.standardDeviation.toFixed(2);
-                $scope.thermometerReadings = response.data;
+        // update the live feed
+        $scope.getReadings().then(function (response) {
+            console.log('get');
+            $scope.currentReading = response.data[0];
+            $scope.currentReading.zScore = $scope.currentReading.zScore.toFixed(2);
+            $scope.currentReading.standardDeviation = $scope.currentReading.standardDeviation.toFixed(2);
+            $scope.thermometerReadings = response.data;
 
-                // draw histogram
-                var data = [
-                    {
-                        x: $scope.currentDataArray,
-                        type: 'histogram',
-                        marker: {
-                            color: '#AECA89'
-                        },
-                        xbins: {
-                            size: $scope.currentReading.standardDeviation / 4,
-                            start: $scope.currentReading.mean - (4 * $scope.currentReading.standardDeviation),
-                            end: $scope.currentReading.mean + (4 * $scope.currentReading.standardDeviation)
-                        }
+            // calculate accumulative totla
+            var sum = 0;
+            for (var i = 0; i < $scope.thermometerReadings.length; i++) {
+                sum += $scope.thermometerReadings[i].payout;
+            }
+            $scope.accumulatedTotal = sum.toFixed(2);
+
+            // draw histogram
+            var data = [
+                {
+                    x: $scope.currentDataArray,
+                    type: 'histogram',
+                    marker: {
+                        color: '#AECA89'
+                    },
+                    xbins: {
+                        size: $scope.currentReading.standardDeviation / 4,
+                        start: $scope.currentReading.mean - (4 * $scope.currentReading.standardDeviation),
+                        end: $scope.currentReading.mean + (4 * $scope.currentReading.standardDeviation)
+                    }
                     }
                 ];
 
-                Plotly.newPlot('myDiv', data);
+            Plotly.newPlot('myDiv', data);
             // });
         }, function (response) {
             console.log('error posting: ' + JSON.stringify(response));
