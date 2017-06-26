@@ -29,16 +29,6 @@ h6 {
     text-align: center;
 }
 
-div#scoreDetailsSection {
-    background: rgba(0, 0, 0, .8);
-    color: white;
-    margin-left: -40px;
-    margin-right: -40px;
-    padding: 40px 40px 72px 40px;
-    margin-top: 40px;
-    margin-bottom: 43px;
-}
-
 div#upArrow {
     position: absolute;
     margin-top: -82px;
