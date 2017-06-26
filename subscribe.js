@@ -107,10 +107,10 @@ MongoClient.connect("mongodb://kevin:kevin@ds011449.mlab.com:11449/trusted-solar
             if (err) {
                 res.status(500).send('error');
             } else {
-                var temp = parseFloat(reading.value);
+                var temp = Math.round(parseFloat(reading.data));
                 if(results[0]){
                   newValue = results[0].set;
-                  newValue[parseInt(reading.index)] = Math.round();
+                  newValue[parseInt(reading.index)] = temp;
                   console.log(newValue);
                 }else{
                   newValue = [temp, temp, temp, temp];
