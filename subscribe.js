@@ -99,6 +99,7 @@ MongoClient.connect("mongodb://kevin:kevin@ds011449.mlab.com:11449/trusted-solar
         console.log('posting thermometer data here: ' + JSON.stringify(req.body));
 
         var reading = req.body;
+        console.log(reading);
         var newValue;
         database.collection('thermometerReading').find()
         .limit(1).sort({$natural:-1})
