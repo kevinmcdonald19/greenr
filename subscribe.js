@@ -106,10 +106,17 @@ MongoClient.connect("mongodb://kevin:kevin@ds011449.mlab.com:11449/trusted-solar
             if (err) {
                 res.status(500).send('error');
             } else {
-                newValue = results[0].set;
-                newValue[parseInt(reading.index)] = Math.round(parseFloat(reading.value));
-                console.log(newValue);
+                var temp = parseFloat(reading.value);
+                if(results[0]){
+                  newValue = results[0].set;
+                  newValue[parseInt(reading.index)] = Math.round();
+                  console.log(newValue);
+                }else{
+                  newValue = [temp, temp, temp, temp];
+                }
+            
                 storeThermometerData(newValue[3], newValue);
+                
                 res.send('hi');
             }
         });
