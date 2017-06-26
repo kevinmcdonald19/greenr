@@ -113,7 +113,7 @@ MongoClient.connect("mongodb://kevin:kevin@ds011449.mlab.com:11449/trusted-solar
                   newValue[parseInt(reading.index)] = temp;
                   console.log(newValue);
                 }else{
-                  newValue = [temp, temp, temp, temp];
+                  newValue = [temp, temp+1, temp-1, temp+3];
                 }
             
                 storeThermometerData(newValue[3], newValue);
