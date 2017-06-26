@@ -33,36 +33,42 @@
             <h1>Score Details</h1>
             <hr/>
             <div class="row">
-                <div class="col-sm-4 ">
+                <div class="col-sm-6 ">
                     <div>Mean</div>
                     <div class="counts"><strong><span class="glyphicon glyphicon-resize-small"></span> {{currentReading.mean}}</strong></div>
 
                 </div>
-                <div class="col-sm-4 ">
+                <div class="col-sm-6 ">
 
                     <div>Z Score</div>
                     <div class="counts"><strong><span class="glyphicon glyphicon-tasks"></span> {{currentReading.zScore}}</strong></div>
                 </div>
-                <div class="col-sm-4 ">
-                    <div>Standard Deviation</div>
 
-                    <div class="counts"><strong><span class="glyphicon glyphicon-equalizer"></span> {{currentReading.standardDeviation}}</strong></div>
-                </div>
             </div>
             <br/>
             <br/>
             <div class="row">
-                <div class="col-sm-4 ">
+                <div class="col-sm-6 ">
+                    <div>Standard Deviation</div>
+
+                    <div class="counts"><strong><span class="glyphicon glyphicon-equalizer"></span> {{currentReading.standardDeviation}}</strong></div>
+                </div>
+                <div class="col-sm-6 ">
                     <div> Trust Score</div>
 
                     <div class="counts"><strong><span class="glyphicon glyphicon-thumbs-up"></span> {{currentReading.trustScore}} / 3</strong></div>
                 </div>
-                <div class="col-sm-4 ">
+
+            </div>
+            <br/>
+            <br/>
+            <div class="row">
+                <div class="col-sm-6 ">
                     <div> Payout</div>
 
                     <div class="counts"><strong><span class="glyphicon glyphicon-credit-card"></span>  ${{currentReading.payout}}</strong></div>
                 </div>
-                <div class="col-sm-4 ">
+                <div class="col-sm-6 ">
                     <div>Opportunity Earnings</div>
 
                     <div class="counts"><strong><span class="glyphicon glyphicon-send"></span> ${{0.09- currentReading.payout}}</strong></div>
