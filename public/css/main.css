@@ -2,6 +2,15 @@ body {
     /*    border-top: 30px solid #20AB7C;*/
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 900;
+}
+
 .app {
     font-family: Arial !important;
     margin: 40px;
@@ -37,4 +46,19 @@ div#upArrow {
     left: 12.1vw;
     color: rgba(0, 0, 0, .8);
     margin-left: 0;
+}
+
+img.center {
+    margin: 0 auto;
+    display: block;
+}
+
+.banner {
+    margin: 20px auto !important;
+}
+
+.greenBanner {
+    width: 100%;
+    height: 20px;
+    background: #AECA89;
 }

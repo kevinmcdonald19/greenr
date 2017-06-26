@@ -2,7 +2,7 @@
 <hr/>
 <div class="row">
     <div class="col-sm-3 center">
-        <img src="images/thermometer.png" width="220" height="300" />
+        <img src="images/therm.png" width="180" height="300" class="img img-responsive center" />
         <br/>
         <br/>
 
@@ -10,14 +10,14 @@
 
     </div>
     <div class="col-sm-3 center">
-        <img src="images/thermometer.png" width="220" height="300" />
+        <img src="images/therm.png" width="180" height="300" class="img img-responsive center" />
         <br/>
         <br/>
 
         <h-number value="input1.num" min="-1000" max="1000" step="1" change="onChanged()"></h-number>
     </div>
     <div class="col-sm-3 center">
-        <img src="images/thermometer.png" width="220" height="300" />
+        <img src="images/therm.png" width="180" height="300" class="img img-responsive center" />
         <br/>
         <br/>
 
@@ -26,7 +26,7 @@
     </div>
 
     <div class="col-sm-3 center">
-        <img src="images/thermometer.png" width="220" height="300" />
+        <img src="images/therm.png" width="180" height="300" class="img img-responsive center" />
         <br/>
         <br/>
 
@@ -37,44 +37,51 @@
 
 </div>
 
-<div id="scoreDetailsSection">
+<div id="scoreDetailsSection" class="center">
     <div id="upArrow">&#9650;</div>
     <h2>Score Details</h2>
-
+    <br/>
     <div class="row">
         <div class="col-sm-4 center">
-            <div class="counts"><strong><span class="glyphicon glyphicon-equalizer"></span> ${{currentReading.mean}}</strong></div>
             <div>Mean</div>
+            <div class="counts"><strong><span class="glyphicon glyphicon-resize-small"></span> {{currentReading.mean}}</strong></div>
+
         </div>
         <div class="col-sm-4 center">
-            <div class="counts"><strong><span class="glyphicon glyphicon-equalizer"></span> ${{currentReading.zScore}}</strong></div>
+
             <div>Z Score</div>
+            <div class="counts"><strong><span class="glyphicon glyphicon-tasks"></span> {{currentReading.zScore}}</strong></div>
         </div>
         <div class="col-sm-4 center">
-            <div class="counts"><strong><span class="glyphicon glyphicon-equalizer"></span> ${{currentReading.standardDeviation}}</strong></div>
             <div>Standard Deviation</div>
+
+            <div class="counts"><strong><span class="glyphicon glyphicon-equalizer"></span> {{currentReading.standardDeviation}}</strong></div>
         </div>
     </div>
     <br/>
     <br/>
     <div class="row">
         <div class="col-sm-4 center">
-            <div class="counts"><strong><span class="glyphicon glyphicon-credit-card"></span>  ${{currentReading.trustScore}}</strong></div>
             <div> Trust Score</div>
+
+            <div class="counts"><strong><span class="glyphicon glyphicon-thumbs-up"></span> {{currentReading.trustScore}} / 3</strong></div>
         </div>
         <div class="col-sm-4 center">
-            <div class="counts"><strong><span class="glyphicon glyphicon-credit-card"></span>  ${{currentReading.payout}}</strong></div>
             <div> Payout</div>
+
+            <div class="counts"><strong><span class="glyphicon glyphicon-credit-card"></span>  ${{currentReading.payout}}</strong></div>
         </div>
         <div class="col-sm-4 center">
-            <div class="counts"><strong><span class="glyphicon glyphicon-send"></span> ${{0.09- currentReading.payout}}</strong></div>
             <div>Opportunity Earnings</div>
+
+            <div class="counts"><strong><span class="glyphicon glyphicon-send"></span> ${{0.09- currentReading.payout}}</strong></div>
         </div>
     </div>
 </div>
 
 
-<h2>Histogram</h2>
+<h1>Histogram</h1>
+<br/>
 <div id="myDiv"></div>
 <br/>
 <br/>

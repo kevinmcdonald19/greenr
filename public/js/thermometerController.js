@@ -54,7 +54,7 @@ mainModule.controller('ThermometerController', function ($rootScope, $scope, $ht
                         x: $scope.currentDataArray,
                         type: 'histogram',
                         marker: {
-                            color: '#D9E5EC'
+                            color: '#AECA89'
                         },
                         xbins: {
                             size: $scope.currentReading.standardDeviation / 4,
